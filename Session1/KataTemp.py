@@ -78,7 +78,7 @@ class Temperature:
             a = None
         return a
 
-    # Function to multiplu the object with another object (it values)
+    # Function to multiply the object with another object (it values)
     def multiply(self, othertemp: 'Temperature'):
         if(self.scale == "Kelvin"):
             a = Temperature(round(self.value * othertemp.toKelvin(), 2), TemperatureScale[2])
@@ -92,6 +92,7 @@ class Temperature:
             a = None
         return a
 
+    # Function to divide the object with another object (it values)
     def divideBy(self, othertemp: 'Temperature'):
         if(othertemp.value == 0):
             return None
@@ -107,14 +108,9 @@ class Temperature:
             if(a == None or a.value == 0):
                 a = None
             return a
-
+            
+    # Function to show objects value and scale in a string
     def ToString(self):
         return '{}º{}'.format(self.value, self.scale[0])
-
-a = Temperature(-369.67, TemperatureScale[0])
-b = Temperature(50, TemperatureScale[2])
-
-print(a.substract(b))
-
 
 
