@@ -175,38 +175,50 @@ class Temperature:
                 return object
 
     # Metgod to divde
-    def divdeBy(self, othertemp: 'Temperature'):
-        # If division not defined
-        if(othertemp.value == 0):
-            return None
+    def divideBy(self, othertemp: 'Temperature'):
         # If scale is Kelvin
-        elif(self.scale == 'K'):
-            obValue = round(self.value / othertemp.toKelvin().value, 2)
-            if(obValue == 0):
+        if(self.scale == 'K'):
+            if(othertemp.toKelvin().value == 0.0):
                 return None
             else:
-                object = Temperature(obValue, TemperatureScale.Kelvin)
-                return object
+                obValue = round(self.value / othertemp.toKelvin().value, 2)
+                # If division not defined
+                if(obValue == 0):
+                    return None
+                else:
+                    object = Temperature(obValue, TemperatureScale.Kelvin)
+                    return object
 
         # If scale is Celsius 
         elif(self.scale == 'C'):
-            obValue = round(self.value / othertemp.toCelsius().value, 2)
-            if(obValue == 0):
+            if(othertemp.toCelsius().value == 0.0):
                 return None
             else:
-                object = Temperature(obValue, TemperatureScale.Celsius)
-                return object
+                obValue = round(self.value / othertemp.toKelvin().value, 2)
+                # If division not defined
+                if(obValue == 0):
+                    return None
+                else:
+                    object = Temperature(obValue, TemperatureScale.Celsius)
+                    return object
 
         # If scale is Fahrenheit
         elif(self.scale == 'F'):
-            obValue = round(self.value / othertemp.toFahrenheit().value, 2)
-            if(obValue == 0):
+            if(othertemp.toFahrenheit().value == 0.0):
                 return None
             else:
-                object = Temperature(obValue, TemperatureScale.Fahrenheit)
-                return object
+                obValue = round(self.value / othertemp.toKelvin().value, 2)
+                # If division not defined
+                if(obValue == 0):
+                    return None
+                else:
+                    object = Temperature(obValue, TemperatureScale.Fahrenheit)
+                    return object
 
+a = Temperature(60, TemperatureScale.Kelvin)
+b = Temperature(-273.15, TemperatureScale.Celsius)
 
+print(a.divideBy(b))
 
 
         
