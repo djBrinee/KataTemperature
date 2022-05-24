@@ -42,7 +42,7 @@ def test_toCelsius(test, expected):
 def test_toFahrenheit(test, expected):
     assert test.toFahrenheit().value == expected
 
-# Testing conversion to Fahrenheit
+# Testing to String
 @pytest.mark.parametrize(
     "test, expected",
     [
