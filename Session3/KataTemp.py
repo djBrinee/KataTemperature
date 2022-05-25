@@ -65,11 +65,11 @@ class Temperature:
     # Function to add operation
     def add(self, other: 'Temperature'):
         if(self.scale == 'K'):
-            a = Temperature(round((self.value + other.toKelvin()), 2), TemperatureScale.Kelvin)
+            a = Temperature(round((self.value + other.toKelvin().value), 2), TemperatureScale.Kelvin)
         elif(self.scale == 'C'):
-            a = Temperature(round((self.value + other.toCelsius()), 2), TemperatureScale.Celsius)
+            a = Temperature(round((self.value + other.toCelsius().value), 2), TemperatureScale.Celsius)
         elif(self.scale == 'F'):
-            a = Temperature(round((self.value + other.toFahrenheit()), 2), TemperatureScale.Fahrenheit)
+            a = Temperature(round((self.value + other.toFahrenheit().value), 2), TemperatureScale.Fahrenheit)
         if(a.value == 0.0):
             result = None
         else:
@@ -79,11 +79,11 @@ class Temperature:
     # function to diff operation
     def diff(self, other: 'Temperature'):
         if(self.scale == 'K'):
-            a = Temperature(round((self.value - other.toKelvin()), 2), TemperatureScale.Kelvin)
+            a = Temperature(round((self.value - other.toKelvin().value), 2), TemperatureScale.Kelvin)
         elif(self.scale == 'C'):
-            a = Temperature(round((self.value - other.toCelsius()), 2), TemperatureScale.Celsius)
+            a = Temperature(round((self.value - other.toCelsius().value), 2), TemperatureScale.Celsius)
         elif(self.scale == 'F'):
-            a = Temperature(round((self.value - other.toFahrenheit()), 2), TemperatureScale.Fahrenheit)
+            a = Temperature(round((self.value - other.toFahrenheit().value), 2), TemperatureScale.Fahrenheit)
         if(a.value == 0.0):
             result = None
         else:
@@ -93,11 +93,11 @@ class Temperature:
     # Function to multiply operation
     def multiply(self, other: 'Temperature'):
         if(self.scale == 'K'):
-            a = Temperature(round((self.value * other.toKelvin()), 2), TemperatureScale.Kelvin)
+            a = Temperature(round((self.value * other.toKelvin().value), 2), TemperatureScale.Kelvin)
         elif(self.scale == 'C'):
-            a = Temperature(round((self.value * other.toCelsius()), 2), TemperatureScale.Celsius)
+            a = Temperature(round((self.value * other.toCelsius().value), 2), TemperatureScale.Celsius)
         elif(self.scale == 'F'):
-            a = Temperature(round((self.value * other.toFahrenheit()), 2), TemperatureScale.Fahrenheit)
+            a = Temperature(round((self.value * other.toFahrenheit().value), 2), TemperatureScale.Fahrenheit)
         if(a.value == 0.0):
             result = None
         else:
@@ -105,24 +105,29 @@ class Temperature:
         return result
 
     # Function to divide operation
-    def divdeBy(self, other: 'Temperature'):
+    def divideBy(self, other: 'Temperature'):
         if(self.scale == 'K'):
-            if(other.toKelvin() == 0):
+            if(other.toKelvin().value == 0.0):
                 a = None
             else:
-                a = Temperature(round((self.value / other.toKelvin()), 2), TemperatureScale.Kelvin)
+                a = Temperature(round((self.value / other.toKelvin().value), 2), TemperatureScale.Kelvin)
         elif(self.scale == 'C'):
-            if(other.toCelsius() == 0):
+            if(other.toCelsius().value == 0.0):
                 a = None
             else:
-                a = Temperature(round((self.value / other.toCelsius()), 2), TemperatureScale.Celsius)
+                a = Temperature(round((self.value / other.toCelsius().value), 2), TemperatureScale.Celsius)
         elif(self.scale == 'F'):
-            if(other.tofahrenheit() == 0):
+            if(other.toFahrenheit().value == 0.0):
                 a = None
             else:
-                a = Temperature(round((self.value / other.tofahrenheit()), 2), TemperatureScale.Fahrenheit)
-        if(a.value == 0.0):
+                a = Temperature(round((self.value / other.toFahrenheit().value), 2), TemperatureScale.Fahrenheit)
+        if(a == None):
+            result = None
+        elif(a.value == 0.0 ):
             result = None
         else:
             result = a
         return result
+
+a = Temperature(52, TemperatureScale.Celsius)
+print(a.toKelvin().value)
